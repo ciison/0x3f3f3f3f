@@ -14,7 +14,7 @@ import (
 
 func main() {
 	err := http.ListenAndServe(":8080", &g)
-	if err !=nil {
+	if err != nil {
 		panic("err" + err.Error())
 	}
 }
@@ -96,8 +96,8 @@ func (r *Node) PATCH(pattern string, handler ...func(ctx *Context)) {
 
 func (r *Node) Insert(pattern, method string, handler ...func(ctx *Context)) {
 
-	if !strings.HasPrefix(pattern,"/") {
-		panic("PATTERN MUST START WITH / BUT GET " + fmt.Sprintf(strings.ToUpper(pattern)) )
+	if !strings.HasPrefix(pattern, "/") {
+		panic("PATTERN MUST START WITH / BUT GET " + fmt.Sprintf(strings.ToUpper(pattern)))
 	}
 	method = strings.ToUpper(method)
 	if _, exist := methods[method]; !exist {
@@ -140,7 +140,7 @@ func (r *Node) Insert(pattern, method string, handler ...func(ctx *Context)) {
 					regexpPath: nil,
 					callback:   nil,
 				})
-				ptr = ptr.regexpPath[len(ptr.regexpPath)-1 ]
+				ptr = ptr.regexpPath[len(ptr.regexpPath)-1]
 				//fmt.Println("append ", ptr )
 			}
 			continue
@@ -183,7 +183,7 @@ func (r *Node) Insert(pattern, method string, handler ...func(ctx *Context)) {
 		callback: handler,
 		index:    0,
 	}
-	fmt.Printf("[info] [%s] register %s method %s\n",time.Now().Format("2006-01-02 15:03"),pattern, method)
+	fmt.Printf("[info] [%s] register %s method %s\n", time.Now().Format("2006-01-02 15:03"), pattern, method)
 	//fmt.Printf("ptr is %+v, ptr.regexpPath %+v, callback %+v\n", ptr, ptr.regexpPath, ptr.callback)
 }
 
@@ -362,109 +362,109 @@ func init() {
 	defaultGenerate()
 }
 
-var  defaultCallBack = func (ctx *Context) {
+var defaultCallBack = func(ctx *Context) {
 	s := ctx.Request.RequestURI
-	st:= struct {
-		URL string `json:"url"`
+	st := struct {
+		URL    string `json:"url"`
 		Method string `json:"method"`
 	}{
-		URL:s,
-		Method:ctx.Request.Method,
+		URL:    s,
+		Method: ctx.Request.Method,
 	}
-	bytes, _:= json.Marshal(st)
-	ctx.ResponseWriter.Header().Set("Content-Type","application/json")
+	bytes, _ := json.Marshal(st)
+	ctx.ResponseWriter.Header().Set("Content-Type", "application/json")
 	ctx.ResponseWriter.WriteHeader(200)
 	ctx.ResponseWriter.Write(bytes)
 }
 
 var defaultGenerate = func() {
-	urls:= [][]string {{"index","hello","nihao",":name([1-5]+)","jump"},
-		{"index","hello","hao",":name([1-5]+)","jump"},
-		{"index","hello","yop",":name([1-5]+)","jump"},
-		{"index","hi","yop",":id([1-9]+)","jump"},
+	urls := [][]string{{"index", "hello", "nihao", ":name([1-5]+)", "jump"},
+		{"index", "hello", "hao", ":name([1-5]+)", "jump"},
+		{"index", "hello", "yop", ":name([1-5]+)", "jump"},
+		{"index", "hi", "yop", ":id([1-9]+)", "jump"},
 
-		{"usr","you",":name([z]+)",":id([9]+)",":you([9]+)",":ni([z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([9]+)",":ni([y-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([x-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([w-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([v-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([u-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([t-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([s-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([r-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([q-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([p-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([o-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([n-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([m-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([l-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([k-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([j-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([i-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([h-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([g-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([f-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([e-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([d-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([c-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([b-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([8-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([6-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([5-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([4-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([3-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([2-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([1-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([z]+)",":id([9]+)",":you([0-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([y-z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([x-z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([v-z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([u-z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([t-z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([s-z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([r-z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([q-z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([p-z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([o-z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([n-z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([m-z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([l-z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([k-z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([j-z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([i-z]+)",":id([8-9]+)",":you([7-8]+)",":ni([a-z]+)"},
-		{"usr","you",":name([h-z]+)",":id([7-9]+)",":you([7]+)",":ni([a-z]+)"},
-		{"usr","you",":name([f-z]+)",":id([6-9]+)",":you([6-7]+)",":ni([a-z]+)"},
-		{"usr","you",":name([e-z]+)",":id([5-9]+)",":you([5-7]+)",":ni([a-z]+)"},
-		{"usr","you",":name([d-z]+)",":id([4-9]+)",":you([4-7]+)",":ni([a-z]+)"},
-		{"usr","you",":name([c-z]+)",":id([3-9]+)",":you([3-7]+)",":ni([a-z]+)"},
-		{"usr","you",":name([b-z]+)",":id([2-9]+)",":you([2-7]+)",":ni([a-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([9]+)", ":ni([z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([9]+)", ":ni([y-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([x-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([w-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([v-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([u-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([t-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([s-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([r-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([q-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([p-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([o-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([n-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([m-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([l-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([k-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([j-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([i-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([h-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([g-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([f-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([e-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([d-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([c-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([b-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([6-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([5-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([4-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([3-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([2-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([1-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([z]+)", ":id([9]+)", ":you([0-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([y-z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([x-z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([v-z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([u-z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([t-z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([s-z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([r-z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([q-z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([p-z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([o-z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([n-z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([m-z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([l-z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([k-z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([j-z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([i-z]+)", ":id([8-9]+)", ":you([7-8]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([h-z]+)", ":id([7-9]+)", ":you([7]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([f-z]+)", ":id([6-9]+)", ":you([6-7]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([e-z]+)", ":id([5-9]+)", ":you([5-7]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([d-z]+)", ":id([4-9]+)", ":you([4-7]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([c-z]+)", ":id([3-9]+)", ":you([3-7]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([b-z]+)", ":id([2-9]+)", ":you([2-7]+)", ":ni([a-z]+)"},
 
-		{"usr","you",":name([a-z]+)",":id([9]+)",":you([9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([a-z]+)",":id([9]+)",":you([8-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([a-z]+)",":id([9]+)",":you([7-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([a-z]+)",":id([9]+)",":you([6-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([a-z]+)",":id([9]+)",":you([5-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([a-z]+)",":id([9]+)",":you([4-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([a-z]+)",":id([9]+)",":you([3-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([a-z]+)",":id([9]+)",":you([2-9]+)",":ni([a-z]+)"},
-		{"usr","you",":name([a-z]+)",":id([9]+)",":you([1-9]+)",":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([9]+)", ":you([9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([9]+)", ":you([8-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([9]+)", ":you([7-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([9]+)", ":you([6-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([9]+)", ":you([5-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([9]+)", ":you([4-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([9]+)", ":you([3-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([9]+)", ":you([2-9]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([9]+)", ":you([1-9]+)", ":ni([a-z]+)"},
 
-		{"usr","you",":name([a-z]+)",":id([8-9]+)",":you([1-7]+)",":ni([a-z]+)"},
-		{"usr","you",":name([a-z]+)",":id([7-9]+)",":you([1-7]+)",":ni([a-z]+)"},
-		{"usr","you",":name([a-z]+)",":id([6-9]+)",":you([1-7]+)",":ni([a-z]+)"},
-		{"usr","you",":name([a-z]+)",":id([5-9]+)",":you([1-7]+)",":ni([a-z]+)"},
-		{"usr","you",":name([a-z]+)",":id([4-9]+)",":you([1-7]+)",":ni([a-z]+)"},
-		{"usr","you",":name([a-z]+)",":id([3-9]+)",":you([1-7]+)",":ni([a-z]+)"},
-		{"usr","you",":name([a-z]+)",":id([2-9]+)",":you([1-7]+)",":ni([a-z]+)"},
-		{"usr","you",":name([a-z]+)",":id([1-9]+)",":you([1-7]+)",":ni([a-z]+)"},
-		{"usr","you",":name([a-z]+)",":id([0-9]+)",":you([1-7]+)",":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([8-9]+)", ":you([1-7]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([7-9]+)", ":you([1-7]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([6-9]+)", ":you([1-7]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([5-9]+)", ":you([1-7]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([4-9]+)", ":you([1-7]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([3-9]+)", ":you([1-7]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([2-9]+)", ":you([1-7]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([1-9]+)", ":you([1-7]+)", ":ni([a-z]+)"},
+		{"usr", "you", ":name([a-z]+)", ":id([0-9]+)", ":you([1-7]+)", ":ni([a-z]+)"},
 	}
-		for i:=0; i< len(urls); i++ {
-			s := strings.Join(urls[i], "/")
-			//fmt.Println(s)
-			g.GET("/"+s,defaultCallBack,)
-		}
+	for i := 0; i < len(urls); i++ {
+		s := strings.Join(urls[i], "/")
+		//fmt.Println(s)
+		g.GET("/"+s, defaultCallBack)
+	}
 
 } //
 
