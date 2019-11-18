@@ -26,7 +26,7 @@
 
 
 
-![各个部分](/image/ubuntu_beautify.png)
+![各个部分](./image/ubuntu_beautify.png)
 
 
 
