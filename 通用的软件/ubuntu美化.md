@@ -6,7 +6,7 @@
 >
 > 如何查看 : `uname -a`
 
-#### 美化的结果如下
+#### 美化的效果如下
 
 ![总览](./image/ubuntu_beautify_view.png)
 
@@ -22,7 +22,7 @@
   * [gnome 图标和主题](https://www.gnome-look.org) , 将图标解压后放在 `/usr/share/icons/` , 主题解压后放在 `/usr/share/themes/` 
   * [Nordic](https://www.pling.com/s/Gnome/p/1267246/) 应用程序 theme
   * [[ChromeOS shell theme](https://www.pling.com/s/Gnome/p/1333760/)] 顶部 shell 的 样式
-  * [ Marwaita]( https://www.pling.com/p/1239855 )  应用程序 icon
+  * [ Marwaita]( https://www.pling.com/s/Gnome/p/1270110/ )  应用程序 icon
 
 
 
