@@ -16,6 +16,8 @@
 
 * 在浏览器上安装 `gnome-extensions`
 
+* 安装 tweak-tool 的插件
+
   *  [gnome-extension插件的地址](https://extensions.gnome.org)
   * [gnome 图标和主题](https://www.gnome-look.org) , 将图标解压后放在 `/usr/share/icons/` , 主题解压后放在 `/usr/share/themes/` 
   * [Nordic](https://www.pling.com/s/Gnome/p/1267246/) 应用程序 theme
