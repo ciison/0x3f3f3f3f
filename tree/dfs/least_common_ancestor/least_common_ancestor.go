@@ -1,4 +1,4 @@
-package dfs
+package least_common_ancestor
 
 import "fmt"
 
