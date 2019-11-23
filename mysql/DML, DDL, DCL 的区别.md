@@ -2,7 +2,7 @@
 
 * DML 
 
-  * DML(data manipulation language) 数据操作语言, `SELECT`, `UPDATE`, `INSERT`, `DELETE` 。主要用来对数据库的 **数据**进行一些操作。
+  * DML(data manipulation language) 数据操作语言, `SELECT`, `UPDATE`, `INSERT`, `DELETE` 。主要用来对数据库的 **数据** 进行一些操作。
 
     ```mysql
     SELECT [列名] FROM 表名 [WHERE ....] --- 
@@ -35,3 +35,4 @@
 
   * DCL (data control language) 数据库的控制语言
     * 用来设置或者修改数据库用户,或者角色权限的语句, 包括 `grant`, `deny`, `revoke` 等
+
