@@ -1,0 +1,12 @@
+syntax="proto3";
+
+
+package request;
+
+// 定义请求结构体
+message Request {
+
+	bytes query = 1;    // 请求参数
+	bytes wxOpenId = 2; // 微信平台提供的 id
+	int32 code  = 3;    // 请求码
+}

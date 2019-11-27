@@ -1,0 +1,14 @@
+syntax= "proto3";
+
+package index;
+
+import "request/request.proto";
+import "response/response.proto";
+
+
+service Index{
+	// 定义一个请求 index 的接口, 输入参数是 request.Request 
+	// 输出的参数是 response.Response
+	rpc Index(request.Request) returns(response.Response){}
+
+}

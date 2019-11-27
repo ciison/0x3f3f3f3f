@@ -1,0 +1,10 @@
+syntax="proto3";
+
+package response;
+
+
+message Response {
+	bytes body = 1 ; // 请求返回体
+	repeated bytes header = 2 ; // 返回的请求头
+	int32 code = 3 ; // 返回的状态码
+}
