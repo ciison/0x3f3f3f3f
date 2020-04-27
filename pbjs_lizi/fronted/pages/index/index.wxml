@@ -1,15 +1,23 @@
 <!--index.wxml-->
-<view class="container">
-	<view>
+<!-- <view class="container"> -->
+	<view class="aMiniResponse">
 		AMiniResponse:{{aMiniResponse.toString()}}
 	</view>
-	<view>
-		aMiniPostResponse:errMessage{{ aMiniPostResponse.errMessage}} -- errCode:{{aMiniPostResponse.errCode}}
-    <!-- 遍历 category 数组 -->
+	<view class="aMiniPostResponse">
+		aMiniPostResponse:
+		<view>
+			errMessage{{ aMiniPostResponse.errMessage}}
+		</view>
+		--
+    <view style="background-color:white;height:4px; width:100vw;"></view>
+		<view>
+			errCode:{{aMiniPostResponse.errCode}}
+		</view>
+		<!-- 遍历 category 数组 -->
 		<view wx:for="{{ aMiniPostResponse.category}}">{{item}}</view>
 	</view>
 	<view id="tab-bottom">
 		<button bindtap="getQeury">get:query</button>
 		<button bindtap="postQuery">post:query</button>
 	</view>
-</view>
+<!-- </view> -->

@@ -5,16 +5,52 @@
   right: 0;
   bottom: 0;
   height: 64px;
-  background-color: pink;
+  background-color: rgb(209, 190, 193);
   display: flex;
+  flex-direction: row;
+  padding-left: 8px;
+  padding-right: 8px;
+  align-items: center;
+  justify-content: space-around;
 }
 
-#tab-bottom button{
+#tab-bottom button {
   border: none;
   border-radius: 48px;
   text-align: center;
-  
-  margin: 8px;
+  /* margin: 12px auto; */
+  /* padding: auto; */
+  background-color: #333;
+  color: white;
+  font-size: 20*2rpx;
 }
 
+.aMiniResponse {
+  background-color: plum;
+  border-radius: 8px;
+  width: 100vw;
+  height: fit-content;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin-left: 8px;
+  margin-right: 8px;
+  font-size: 18px;
+}
 
+.aMiniPostResponse{
+  margin-top: 32px;
+
+  background-color: yellowgreen;
+  border-radius: 8px;
+  width: 100vw;
+  margin-left: 8px;
+  margin-right: 8px;
+  height: fit-content;
+  /* padding-left: 20px; */
+  /* padding-right: 20px; */
+  padding-top: 16px;
+  padding-bottom: 16px;
+  font-size: 18px;
+}
