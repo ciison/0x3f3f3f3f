@@ -32,7 +32,11 @@ function StringToUint8Array(str) {
   return tmpUint8Array
 }
 Page({
-  data: {},
+  data: {
+    aMiniPostResponse:{},
+    aMiniPostRequest:{},
+    aMiniResponse:{}
+  },
 
   onLoad: function () {},
   getQeury(evt) {
@@ -59,6 +63,9 @@ Page({
         let data = StringToUint8Array(res.data)
         let a = AMiniPostResponse.decode(data)
         console.log(a)
+        this.setData({
+          aMiniPostResponse:a,
+        })
         // console.log(data)
       }
     })

@@ -1,8 +1,15 @@
 <!--index.wxml-->
 <view class="container">
- 
- <view id="tab-bottom">
-  <button bindtap="getQeury">get:query</button>
-  <button bindtap="postQuery">post:query</button>
- </view>
+	<view>
+		AMiniResponse:{{aMiniResponse.toString()}}
+	</view>
+	<view>
+		aMiniPostResponse:errMessage{{ aMiniPostResponse.errMessage}} -- errCode:{{aMiniPostResponse.errCode}}
+    <!-- 遍历 category 数组 -->
+		<view wx:for="{{ aMiniPostResponse.category}}">{{item}}</view>
+	</view>
+	<view id="tab-bottom">
+		<button bindtap="getQeury">get:query</button>
+		<button bindtap="postQuery">post:query</button>
+	</view>
 </view>
