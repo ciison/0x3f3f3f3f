@@ -1,0 +1,10 @@
+syntax="proto3";
+
+
+// 定义一个 "类" AMiniRequest :: 这个会名称之后会用到的
+message AMiniRequest {
+    string open_id = 1;
+    string jwt = 2;
+    string address = 3;
+    int64 age = 4; //不要问为什么是 int64, 或许是没有猿都希望自己活得长一点
+}

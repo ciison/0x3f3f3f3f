@@ -1,0 +1,8 @@
+syntax="proto3";
+
+package request;
+
+message my{
+	int32 age =1;
+	string name =2;
+	}
