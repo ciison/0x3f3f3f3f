@@ -10,7 +10,9 @@
 
 主要引用的文件:  [  https://github.com/protobufjs/protobuf.js/tree/master/src ]( https://github.com/protobufjs/protobuf.js/tree/master/src )
 
+pbjs 状态图：
 
+![68747470733a2f2f70726f746f6275666a732e6769746875622e696f2f70726f746f6275662e6a732f746f6f6c7365742e737667](./md_image/68747470733a2f2f70726f746f6275666a732e6769746875622e696f2f70726f746f6275662e6a732f746f6f6c7365742e737667.svg)
 
 > 命令中的 -g 选项表示全局安装
 
