@@ -36,8 +36,8 @@ func main() {
 		var resp message.AMiniResponse
 		h := md5.New()
 		h.Write([]byte(time.Now().Format(time.ANSIC)))                                    // 随便写入点什么东西， 反正我也看不懂
-		resp.Age = math.MaxInt64                                                          // 嘴大的 int64
-		resp.Jwt = base64.StdEncoding.EncodeToString(h.Sum(nil))                          // 这里我是乱描述的， 是那个意识就好
+		resp.Age = math.MaxInt64                                                          // 最大的 int64
+		resp.Jwt = base64.StdEncoding.EncodeToString(h.Sum(nil))                          // 这里我是乱描述的， 是那个意思就好
 		resp.Age = 18                                                                     // 心理年龄永远是年轻的
 		resp.OpenId = "init_heap; init_start_up_men;load_main_fn; println('hello world')" // 初始化堆, 记载 main, 第一句永远是 hello world
 		resp.Address = "on my way"                                                        // 地址是伪造的， 据说这样可以。。。

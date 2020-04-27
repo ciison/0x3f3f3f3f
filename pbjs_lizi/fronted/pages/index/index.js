@@ -3,6 +3,17 @@
 const app = getApp()
 const BaseUrl = "http://localhost:8080"
 console.log(BaseUrl)
+let protoBuff = require('../../protobufjs/protobuf') // 引入 protoBuff 的库
+let messageConfig = require('./message')
+let messageRoot = protoBuff.Root.fromJSON(messageConfig)
+console.log(messageRoot)
+// proto 定义的类型， 这里的类型没有 package 
+let AMiniResponse = messageRoot.lookupType('AMiniResponse')
+console.log(AMiniResponse)
+let AMiniPostRequest = messageRoot.lookupType('AMiniPostRequest')
+console.log(AMiniPostRequest)
+let AMiniPostResponse = messageRoot.lookupType('AMiniPostResponse')
+console.log(AMiniPostResponse)
 
 function Uint8ArrayToString(fileData) {
   let dataString = "";
@@ -33,6 +44,8 @@ Page({
         console.log(res);
         let buffer = StringToUint8Array(res.data)
         console.log(buffer)
+        let rb = AMiniResponse.decode(buffer)
+        console.log(rb)
       }
     })
   },
@@ -43,8 +56,10 @@ Page({
       method: 'POST',
       success: (res) => {
         console.log(res)
-        let data = StringToUint8Array(res.data);
-        console.log(data)
+        let data = StringToUint8Array(res.data)
+        let a = AMiniPostResponse.decode(data)
+        console.log(a)
+        // console.log(data)
       }
     })
   }
