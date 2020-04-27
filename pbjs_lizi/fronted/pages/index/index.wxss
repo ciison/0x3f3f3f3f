@@ -1,0 +1,20 @@
+/**index.wxss**/
+#tab-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 64px;
+  background-color: pink;
+  display: flex;
+}
+
+#tab-bottom button{
+  border: none;
+  border-radius: 48px;
+  text-align: center;
+  
+  margin: 8px;
+}
+
+

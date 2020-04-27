@@ -1,0 +1,9 @@
+GET http://localhost:8080/query
+Accept: application/json
+
+###
+
+POST http://localhost:8080/query?query=bad query params
+Accept: application/json
+
+###

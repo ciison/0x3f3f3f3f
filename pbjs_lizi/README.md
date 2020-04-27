@@ -17,6 +17,10 @@
 ```shell
 npm install -g protobufjs
 ```
+> ps: 如果 npm 安装失败，试试国内镜像， 比如万能的淘宝 `npm config set registry https://registry.npm.taobao.org `
+
+![npm_install_error](./md_image/npm_install_error.jpeg)
+
 
 工具完成之后, 选择 `pbjs --h ` 命令大法
 

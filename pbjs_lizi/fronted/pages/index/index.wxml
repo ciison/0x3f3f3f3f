@@ -1,0 +1,8 @@
+<!--index.wxml-->
+<view class="container">
+ 
+ <view id="tab-bottom">
+  <button bindtap="getQeury">get:query</button>
+  <button bindtap="postQuery">post:query</button>
+ </view>
+</view>

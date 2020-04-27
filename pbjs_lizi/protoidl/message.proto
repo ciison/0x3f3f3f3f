@@ -1,10 +1,21 @@
-syntax="proto3";
+syntax = "proto3";
 
-
-// 定义一个 "类" AMiniRequest :: 这个会名称之后会用到的
-message AMiniRequest {
+// 定义一个 "类" AMiniResponse :: 这个会名称之后会用到的
+message AMiniResponse {
     string open_id = 1;
     string jwt = 2;
     string address = 3;
     int64 age = 4; //不要问为什么是 int64, 或许是没有猿都希望自己活得长一点
+}
+
+// post 请求用的
+message AMiniPostRequest {
+    string jwt = 1;
+    string category = 2;
+}
+
+message AMiniPostResponse {
+    int32 err_code = 1;
+    string err_message = 2;
+    repeated string category = 3; // category 数组
 }
