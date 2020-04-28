@@ -1,17 +1,20 @@
 package main
 
 import (
-	message "0x3f3f3f3f/pbjs_lizi/protoidl"
 	"crypto/md5"
 	"encoding/base64"
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"github.com/golang/protobuf/proto"
 	"io/ioutil"
 	"math"
 	"math/rand"
 	"net/http"
+	"strconv"
 	"time"
+
+	message "0x3f3f3f3f/pbjs_lizi/protoidl"
+	report "0x3f3f3f3f/pbjs_lizi/protoidl/err"
+	"github.com/gin-gonic/gin"
+	"github.com/golang/protobuf/proto"
 )
 
 func main() {
@@ -39,7 +42,7 @@ func main() {
 		resp.Age = math.MaxInt64                                                          // 最大的 int64
 		resp.Jwt = base64.StdEncoding.EncodeToString(h.Sum(nil))                          // 这里我是乱描述的， 是那个意思就好
 		resp.Age = 18                                                                     // 心理年龄永远是年轻的
-		resp.OpenId = "init_heap; init_start_up_men;load_main_fn; println('hello world')" // 初始化堆, 记载 main, 第一句永远是 hello world
+		resp.OpenId = "init_heap; init_start_up_men;load_main_fn; println('hello world')" // 初始化堆, 加载 main, 第一句永远是 hello world
 		resp.Address = "on my way"                                                        // 地址是伪造的， 据说这样可以。。。
 		fmt.Printf("AMiniResponse%#v\n", resp.String())
 		ctx.ProtoBuf(http.StatusOK, &resp) // 使用 pb 的方式返回数据
@@ -59,7 +62,7 @@ func main() {
 		}
 
 		if err = proto.UnmarshalMerge(data, &req); err != nil {
-			fmt.Printf("[error] proto.UnmarshalMerge error:%s\n", err)
+			fmt.Printf("[error] proto.Unmarshal error:%s\n", err)
 			resp.ErrCode = 400
 			resp.ErrMessage = "bad params"
 			ctx.ProtoBuf(http.StatusOK, &resp)
@@ -74,7 +77,35 @@ func main() {
 		ctx.ProtoBuf(http.StatusOK, &resp)
 	})
 
+	// 复杂结构体的使用
+	engine.POST("/complex/err", func(ctx *gin.Context) {
+		fmt.Printf("[info] query:%s\n", ctx.Request.RequestURI)
+		var req report.ErrReportRequest
+		var resp report.ErrReportResponse
+		defer ctx.Request.Body.Close()
+		data, err := ioutil.ReadAll(ctx.Request.Body)
+		if err != nil {
+			fmt.Printf("[error] ioutil.ReadAll error:%s\n", err)
+			resp.ErrCode = 500
+			resp.ErrMessage = "internal error"
+			ctx.ProtoBuf(http.StatusOK, &resp)
+			return
+		}
+		if err = proto.Unmarshal(data, &req); err != nil {
+			fmt.Printf("[error] proto.Unmarshal error:%s\n", err)
+			resp.ErrCode = 400
+			resp.ErrMessage = "bad params"
+			ctx.ProtoBuf(http.StatusOK, &resp)
+			return
+		}
+		fmt.Printf("[info] query data:%s, %#v\n", req.String(), req)
 
+		resp.ErrCode = 1
+		resp.ErrMessage = "success"
+		resp.ServerInfo = &report.ServerInfo{Version: strconv.FormatInt(rand.Int63(), 10) + "::: build by golang, complex struct, " + time.Now().Format("2006-01-02 15:04:05")}
+		fmt.Printf("resp:%s\n", resp.String())
+		ctx.ProtoBuf(http.StatusOK, &resp)
+	})
 	if err := engine.Run("0.0.0.0:8080"); err != nil {
 		panic(err)
 	}

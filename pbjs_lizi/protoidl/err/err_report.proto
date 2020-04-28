@@ -1,0 +1,24 @@
+// complex proto
+
+syntax = "proto3";
+
+package err;
+
+import "err_info.proto";
+
+// 请求结构体, 这里嵌套进入了一个 err.ErrInfo
+message ErrReportRequest {
+    err.ErrInfo err_info = 1; // 错误的信息
+    string access_token = 2; // 上报的用户
+}
+
+//
+message ErrReportResponse {
+    int64 err_code = 1;
+    string err_message = 2;
+    ServerInfo server_info = 3; // 嵌套一个结构体... 只是作为一个样例
+}
+
+message ServerInfo {
+    string version = 1;
+}
