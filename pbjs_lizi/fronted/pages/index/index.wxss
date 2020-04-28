@@ -8,8 +8,8 @@
   background-color: rgb(209, 190, 193);
   display: flex;
   flex-direction: row;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 4px;
+  padding-right: 4px;
   align-items: center;
   justify-content: space-around;
 }
@@ -22,7 +22,7 @@
   /* padding: auto; */
   background-color: #333;
   color: white;
-  font-size: 20*2rpx;
+  font-size: 12px;
 }
 
 .aMiniResponse {
@@ -53,4 +53,20 @@
   padding-top: 16px;
   padding-bottom: 16px;
   font-size: 18px;
+}
+#errReportResponse{
+  margin-top: 32px;
+
+  background-color: #333;
+  border-radius: 8px;
+  width: 100vw;
+  margin-left: 8px;
+  margin-right: 8px;
+  height: fit-content;
+  /* padding-left: 20px; */
+  /* padding-right: 20px; */
+  padding-top: 16px;
+  padding-bottom: 16px;
+  font-size: 18px;
+  color: white;
 }

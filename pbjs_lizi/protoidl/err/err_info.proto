@@ -1,0 +1,12 @@
+// errInfo idl
+syntax = "proto3";
+
+package err;
+
+// ErrInfo 这个名称在JS 提取描述的时候会用到
+message ErrInfo {
+    string app_id = 1; // 小程序的 id
+    string page_url = 2; // 页面
+    string err_info = 3; // 错误的原因
+    int64 err_time = 4; // 错误时间
+}
