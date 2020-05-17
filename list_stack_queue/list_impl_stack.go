@@ -7,18 +7,18 @@ import (
 
 // 使用单链表实现栈, 不用头结点
 type Node struct {
-	Val int
+	Val  int
 	next *Node
 }
 
-func (c * Node) Push(val int ) *Node{
-	tmp:= new(Node)
+func (c *Node) Push(val int) *Node {
+	tmp := new(Node)
 	tmp.Val = val
 	tmp.next = c
 	c = tmp
 	return c
 }
-func (c *Node) Pop() *Node{
+func (c *Node) Pop() *Node {
 	if c == nil {
 		return nil
 	}

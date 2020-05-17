@@ -16,32 +16,30 @@ func main() {
 		LEN = 10
 	)
 	rand.Seed(time.Now().UnixNano())
-	l:=make([]int, LEN, LEN )
-	p := make([]int , 3 )
-	for i:= 0 ; i< LEN; i++ {
-		l[i] =rand.Intn(LEN +100)
+	l := make([]int, LEN, LEN)
+	p := make([]int, 3)
+	for i := 0; i < LEN; i++ {
+		l[i] = rand.Intn(LEN + 100)
 
 	}
 	sort.Ints(l)
 	p[0] = 1
 	p[1] = 0
 	p[2] = 3
-	fmt.Println("l:",l)
-	fmt.Println("p:", p )
+	fmt.Println("l:", l)
+	fmt.Println("p:", p)
 
-
-	printLots(l, p )
+	printLots(l, p)
 }
 
-
-func printLots(l, p []int ) {
-	if len(p) <=0 {
+func printLots(l, p []int) {
+	if len(p) <= 0 {
 		return
 	}
 
-	for _, val:=range p {
+	for _, val := range p {
 		// 如果 l 的长度小于 val, 直接退出就行了
-		if len(l) < val  {
+		if len(l) < val {
 			return
 		}
 		if val <= 0 {
