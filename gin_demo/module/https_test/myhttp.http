@@ -1,0 +1,35 @@
+## 检验不通过的
+POST http://localhost:8080/index
+Content-Type: application/json
+
+{}
+
+###
+# 校验可以通过
+POST http://localhost:8080/index
+Content-Type: application/json
+
+{
+  "query_id": 90,
+  "name": "this is xiao cheng"
+}
+
+###
+
+# 校验不通过
+POST http://localhost:8080/profile
+Content-Type: application/json
+Authorization: "helloworld"
+
+{}
+
+###
+
+# 校验通过
+POST http://localhost:8080/profile
+Content-Type: application/json
+Authorization: abcdefghijklmnopqrstuvwxyz01234567890
+
+{}
+
+###
